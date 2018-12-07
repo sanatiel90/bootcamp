@@ -1,1 +1,10 @@
 yarn add nodemailer-express-handlebars express-handlebars
+
+yarn add kue
+
+yarn add express-validation
+
+yarn add joi
+
+
+
