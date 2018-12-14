@@ -2,9 +2,8 @@ const User = require('../models/User')
 
 class UserController {
     async index(req, res){
-        const response = User.find()
-        //const users = stringf
-        return res.json({test:"Olá"})
+        const users = await User.find()
+        return res.json(users)
     }
     
     async store(req, res){

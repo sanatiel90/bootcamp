@@ -20,6 +20,12 @@ const AdSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    //caso o ad seja vendido, esse campo é preenchido com o id da purchase aceita
+    purchasedBy:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Purchase',
+        required: false
+    },
     created_at: {
         type: Date,
         default: Date.now()

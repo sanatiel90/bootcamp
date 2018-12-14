@@ -26,14 +26,16 @@ class AdController {
             //para filtro por text cria-se uma RegExp com o nome informado; o 'i' é para case-insensitive
             filters.title = new RegExp(req.query.title, 'i')
         }
-        
+       //pegando apenas ads q nao tiverem sido purchasedBy (vendidos ) 
+        filters.purchasedBy = null
 
         const ads = await Ad.paginate(filters, {
-            limit: 3,
+            limit: 5,
             page: req.query.page || 1,
             sort: '-createdAt', //ordenando por createdAt desc
             populate: ['author'] //populate: caso o model possua relacionamento, vai acessar o campo do model relacionado('author') e mostrar os dados do registro desse model
         })
+        //const ads = await Ad.find().where({ purchasedBy : null })
         return res.json(ads)
     }   
 

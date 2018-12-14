@@ -8,3 +8,6 @@ yarn add joi
 
 
 
+SENTRY: ferramenta que monitora os erros de sua app enquanto está rodando em producao
+
+

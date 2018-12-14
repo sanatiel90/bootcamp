@@ -1,10 +1,10 @@
 //configs do servidor de email do site MailTrap
 module.exports = {
-    host: 'smtp.mailtrap.io',
-    port: 2525,
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
     secure: false,
     auth: {
-        user: 'a3ba2c359d4762',
-        pass: '8946d1df2ad22f'
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
     }
 }
