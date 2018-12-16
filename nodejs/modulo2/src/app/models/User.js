@@ -1,5 +1,6 @@
 //para criptografar
 const bcryptjs = require('bcryptjs')
+const sequelizePaginate = require('sequelize-paginate')
 
 //param sequelize: instancia do ORM para conectar com o banco
 //param DataTypes: define os tipos dos campos
@@ -24,6 +25,8 @@ module.exports = (sequelize, DataTypes) => {
             }
         } 
     })
+
+    sequelizePaginate.paginate(User)
 
     //definindo novos metodos para o model: Model.prototype.nomDoMetodo
     //esse novo metodo precisa receber uma named funcion (não pode ser arrow function)
