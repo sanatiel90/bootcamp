@@ -1,0 +1,15 @@
+Editor Config: plugin do Vs Code onde vc determina regras que serão seguidas no projeto, como regras de identação, quebra de linha,
+charset, dentre outras
+
+
+ESLint: lib instaladad via npm para gerar padrões de codificação; com ele vc pode definir por exemplo q o projeto só usará aspas simples
+e q o final de linha precisa ou não ser preenchido com ';'
+
+# npm install -D eslint   ///instala
+# node_modules/.bin/eslint --init   ///inicializa, vc deverá responder algumas perguntas
+- depois disso configure o arquivo 'eslintrc' q foi gerado
+
+
+Prettier: automatiza o uso do eslint; quando vc salvar o arq, automaticamente as regras definidas no eslint serão aplicadas no arquivo em questao
+# npm install prettier-eslint -D
+
