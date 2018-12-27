@@ -3,10 +3,12 @@ import ReactMapGL, { Marker } from 'react-map-gl'
 import LateralBar from './../LateralBar'
 import Modal from 'react-responsive-modal'
 import 'mapbox-gl/dist/mapbox-gl.css';
-
+import 'react-toastify/dist/ReactToastify.css';
 import { connect }  from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators as UserActions } from './../../store/ducks/users'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 class Map extends Component {
@@ -39,7 +41,7 @@ class Map extends Component {
     }
 
     onCloseModal = () => {
-        this.setState({ open: false })
+        this.setState({ open: false }) 
     }
 
     componentDidMount(){
@@ -77,8 +79,10 @@ class Map extends Component {
     }
 
     handleAddUser = (e) => {
+        const { users, addUserRequest } = this.props
         e.preventDefault()
-        this.props.addUserRequest(this.state.data)
+        
+        addUserRequest(this.state.data)
         this.setState({
             data: {
                 userInput: '',
@@ -86,7 +90,26 @@ class Map extends Component {
                 longitude: '', 
             }
          })
+         !users.error ? this.toastSuccess() : this.toastError(users.error)
          this.onCloseModal()
+    }
+
+    handleDeleteUser = (id) => {
+        const { users, deleteUserRequest } = this.props
+        deleteUserRequest(id)
+        if (users.error) this.toastError(users.error)
+    }
+
+    toastSuccess = () => {
+        toast.success('Usuário Adicionado!', {
+            position: toast.POSITION.TOP_CENTER
+        })
+    }
+
+    toastError = (msg) => {
+        toast.error(msg , {
+            position: toast.POSITION.TOP_CENTER
+        })
     }
 
     
@@ -101,11 +124,11 @@ class Map extends Component {
                     onViewportChange={(viewport) => this.setState({viewport})}
                     mapboxApiAccessToken={'pk.eyJ1Ijoic2FuYXRpZWw5MCIsImEiOiJjanEwd2Q0eWgwY3R2NDlxbjFuZGMwNnEzIn0.sP7PvKKuUyIApDMY4OCdxw'}>
                     
-                    <LateralBar users={this.props.users.data} />
+                    <LateralBar 
+                        users={this.props.users.data} 
+                        deleteUser={this.handleDeleteUser} />
                     
-                    
-                    { this.props.favorites.error === false ?  
-                        this.props.users.data.map(user => (
+                    {   this.props.users.data.map(user => (
                             <Marker key={user.id} latitude={user.longitude} longitude={user.latitude}  onClick={this.onOpenModal} captureClick={true} >
                                     <div>
                                         <img style={{
@@ -117,8 +140,6 @@ class Map extends Component {
                                     </div>
                             </Marker>
                         ))
-
-                        : 'erro'
                     }
                     
                     <Modal open={open} onClose={this.onCloseModal} center >
@@ -133,6 +154,7 @@ class Map extends Component {
                     </Modal>
                    
                 </ReactMapGL>
+                <ToastContainer autoClose={3000} />
             </Fragment>
         )
     }
