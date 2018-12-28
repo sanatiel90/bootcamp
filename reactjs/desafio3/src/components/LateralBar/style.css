@@ -1,5 +1,5 @@
 .container{
-    background: rgba(238, 241, 241, 0.836)	;
+    background: rgba(255, 255, 255, 0.945)	;
     height: 600px;
     width: 300px;
     display: flex;
@@ -11,13 +11,47 @@
 .row-user{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     border-radius: 8px;
     margin: 5px 5px;
-    background: rgb(216, 196, 228);
+    background: rgb(243, 240, 240); /*rgb(216, 196, 228);*/
 }
 
 .row-user img{
     border-radius: 100px;
     width: 48px;
     height: 48px;
+    margin-left: 7px;
+    padding: 5px 0;
 }
+
+.row-user .info-user{
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+    margin-left: 10px;
+}
+
+.row-user button{
+    border: none;
+    background: red;
+    color: white;
+    border-radius: 100px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+
+.row-user a{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 5px;
+}
+

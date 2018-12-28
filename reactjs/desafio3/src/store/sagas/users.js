@@ -13,6 +13,8 @@ export function* addUser(action){
             id: data.id,
             name: data.name,
             avatar: data.avatar_url,
+            repositories: data.public_repos, 
+            url: data.html_url,
             latitude: action.payload.user.latitude,
             longitude: action.payload.user.longitude,
         }

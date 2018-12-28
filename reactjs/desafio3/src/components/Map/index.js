@@ -8,7 +8,7 @@ import { connect }  from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators as UserActions } from './../../store/ducks/users'
 import { ToastContainer, toast } from 'react-toastify';
-
+import  { Form } from './styles'
 
 
 class Map extends Component {
@@ -143,14 +143,16 @@ class Map extends Component {
                     }
                     
                     <Modal open={open} onClose={this.onCloseModal} center >
-                        <form style={{ padding: 50 }} onSubmit={this.handleAddUser}>
+                        <Form onSubmit={this.handleAddUser}>
                             <strong>Adicionar novo usuário</strong>
                             <br/>
                             <input type="text" placeholder="Usuário no Github" value={data.userInput}  
                             onChange={e => { this.setState({ data: { userInput: e.target.value, latitude: data.latitude, longitude: data.longitude } } )}} />
-                            <button onClick={this.onCloseModal}> Cancelar </button>
-                            <button type="submit" > Adicionar </button>
-                        </form>
+                            <div className="actions">
+                                <button className="btCancel" onClick={this.onCloseModal}> Cancelar </button>
+                                <button className="btAdd"  type="submit" > Salvar </button>
+                            </div>
+                        </Form>
                     </Modal>
                    
                 </ReactMapGL>
